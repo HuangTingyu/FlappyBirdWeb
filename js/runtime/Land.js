@@ -10,11 +10,15 @@ export class Land extends Sprite{
     0, window.innerHeight - image.height,
     image.width, image.height)
     this.landX = 0
-    this.landSpeed = 2
+    this.landSpeed = Director.getInstance().moveSpeed
   }
 
   draw(){
     this.landX = this.landX + this.landSpeed
+    if(this.landX > (this.img.width - window.innerWidth)){
+      // 即将到canvas右侧边界的时候，继续开始循环
+      this.landX = 0
+    }
     super.draw(this.img,
     this.srcX,
     this.srcY,
